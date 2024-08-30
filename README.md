@@ -1,6 +1,6 @@
 # FlipDigitDriver
 
-Library for the [FlipDigit Driver] (https://www.tinytronics.nl/index.php?route=product/product&product_id=6398)for the [mechanical 7-segment display from Alfa-Zeta](https://www.tinytronics.nl/index.php?route=product/product&product_id=6270), better known as a FlipDigit. 
+Library for the [FlipDigit Driver](https://www.tinytronics.nl/index.php?route=product/product&product_id=6398) for the [mechanical 7-segment display from Alfa-Zeta](https://www.tinytronics.nl/index.php?route=product/product&product_id=6270), better known as a FlipDigit. 
 
 
 
