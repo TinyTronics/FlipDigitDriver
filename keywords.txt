@@ -1,0 +1,41 @@
+###########################################
+# Syntax Coloring Map For FlipDigit Library
+###########################################
+
+###########################################
+# Datatypes (KEYWORD1)
+###########################################
+
+FlipDigit	KEYWORD1
+uint16_t	KEYWORD1
+
+###########################################
+# Methods and Functions (KEYWORD2)
+###########################################
+
+begin	KEYWORD2
+clearDisplay	KEYWORD2
+setDigits	KEYWORD2
+frameDelay	KEYWORD2
+getDigitByte	KEYWORD2
+updateSegments	KEYWORD2
+resetSegmentsTrigger	KEYWORD2
+
+###########################################
+# Constants and Macros (KEYWORD3)
+###########################################
+SEGMENT_A	KEYWORD3
+SEGMENT_A_INV	KEYWORD3
+SEGMENT_B	KEYWORD3
+SEGMENT_B_INV	KEYWORD3
+SEGMENT_C	KEYWORD3
+SEGMENT_C_INV	KEYWORD3
+SEGMENT_D	KEYWORD3
+SEGMENT_D_INV	KEYWORD3
+SEGMENT_E	KEYWORD3
+SEGMENT_E_INV	KEYWORD3
+SEGMENT_F	KEYWORD3
+SEGMENT_F_INV	KEYWORD3
+SEGMENT_G	KEYWORD3
+SEGMENT_G_INV	KEYWORD3
+TRIGGER	KEYWORD3
