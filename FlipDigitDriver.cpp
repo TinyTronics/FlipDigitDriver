@@ -2,18 +2,10 @@
  * FlipDigitDriver.cpp
  *
  *  Created on: 9 aug. 2024
- *      Author: Yun
+ *      Author: TinyTronics
  */
 #include "FlipDigitDriver.h"
 #include <Arduino.h>
-
-// Define the ON delay based on the current consumption and power requirements
-// If characters are not properly displayed you probably need to increase this delay
-
-
-// Keeping the OFF delay at 1 millisecond should be enough
-
-// Segment mapping constants
 
 const uint16_t FlipDigitDriver::SEGMENT_A     = 0x0200;
 const uint16_t FlipDigitDriver::SEGMENT_A_INV = 0x0400;
