@@ -2,7 +2,7 @@
  * FlipDigitDriver.cpp
  *
  *  Created on: 9 aug. 2024
- *      Author: Yun
+ *      Author: TinyTronics
  */
 // FlipDigitDriver.h
 
@@ -15,12 +15,9 @@
 
 class FlipDigitDriver {
 public:
-    // FlipDigitDriver(int latchPin, int clockPin, int dataPin);
     FlipDigitDriver();
     ~FlipDigitDriver();
     void begin(int latchPin, int clockPin, int dataPin,  int _DigitWidth );
-    // void displayDigit(char digit);
-    // void displayNumber(String number);
     void clearDisplay();
     void setDigits(char segmentDigits[]);
      void frameDelay(int delay_ms); 
@@ -46,8 +43,6 @@ private:
     static const uint16_t SEGMENT_G;
     static const uint16_t SEGMENT_G_INV;
     static const uint16_t TRIGGER;
- 
 };
-
 
 #endif // FlipDigitDriver_H
