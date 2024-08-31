@@ -1,5 +1,5 @@
 #include <Arduino.h>
-#include "FlipDigit.h"
+#include "FlipDigitDriver.h"
 
 //Example with 4 flipdigits in series
 
@@ -14,7 +14,7 @@ int dataPin = 4;
 #endif
 
 
-FlipDigit display;
+FlipDigitDriver display;
 int Digitwidth = 4;
 
 void setup() 
