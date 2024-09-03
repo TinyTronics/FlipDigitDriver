@@ -1,62 +1,50 @@
+/*
+   Example with 4 Flipdigits in series
+
+   Created on: 3 Sept. 2024
+   Author: TinyTronics
+*/
+
 #include <Arduino.h>
 #include "FlipDigitDriver.h"
 
-//Example with 4 flipdigits in series
 
-#if defined(ESP32)
-int latchPin = 32;
-int clockPin = 25;
-int dataPin = 26;
-#else // e.g. Arduino Uno or Arduino Mega
-int latchPin = 6;
-int clockPin = 5;
-int dataPin = 4;
-#endif
+int latchPin = 5;     // Can be any output pin
+int clockPin = 4;     // Can be any output pin
+int dataPin = 2;      // Can be any output pin
+
+int Digitwidth = 4;   // Change this to the number of digits being used
 
 
 FlipDigitDriver display;
-int Digitwidth = 4;
 
-void setup() 
+void setup()
 {
- display.begin(latchPin, clockPin, dataPin, Digitwidth);
-   display.setDigits("8888");
-  delay(1000);
-  display.setDigits("    ");
-  delay(1000);
-
-  display.setDigits("BY  ");
-  delay(1000);
-  display.setDigits("YUN ");
-  delay(1000);
-
+  display.begin(latchPin, clockPin, dataPin, Digitwidth);
 }
 
-void loop() 
+void loop()
 {
+  int frame_delay_simple = 1000;
 
-  int frame_delay_simple = 1000; 
-
+  display.setDigits("0000");
+  display.frameDelay(frame_delay_simple);
   display.setDigits("1111");
   display.frameDelay(frame_delay_simple);
-    display.setDigits("2222");
+  display.setDigits("2222");
   display.frameDelay(frame_delay_simple);
-    display.setDigits("3333");
+  display.setDigits("3333");
   display.frameDelay(frame_delay_simple);
-      display.setDigits("4444");
+  display.setDigits("4444");
   display.frameDelay(frame_delay_simple);
-      display.setDigits("5555");
+  display.setDigits("5555");
   display.frameDelay(frame_delay_simple);
-      display.setDigits("6666");
+  display.setDigits("6666");
   display.frameDelay(frame_delay_simple);
-      display.setDigits("7777");
+  display.setDigits("7777");
   display.frameDelay(frame_delay_simple);
-      display.setDigits("8888");
+  display.setDigits("8888");
   display.frameDelay(frame_delay_simple);
-      display.setDigits("9999");
+  display.setDigits("9999");
   display.frameDelay(frame_delay_simple);
-  
-
 }
-
-
