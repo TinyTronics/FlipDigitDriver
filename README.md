@@ -54,6 +54,6 @@ This library has been tested with an ESP32 and with an Arduino Uno. Other MCU's 
 
 Written by TinyTronics.
 
-MIT license, check license.txt for more information
+MIT license, check license.txt for more information.
 
-All text above must be included in any redistribution
+All text above must be included in any redistribution.
