@@ -23,16 +23,6 @@ const uint16_t FlipDigitDriver::SEGMENT_G     = 0x0001;
 const uint16_t FlipDigitDriver::SEGMENT_G_INV = 0x0002;
 const uint16_t FlipDigitDriver::TRIGGER       = 0x8000;
 
-
-#if defined(ESP32)
-extern int latchPin;
-extern int clockPin;
-extern int dataPin;
-#else // Arduino Uno or Arduino Mega
-extern int latchPin;
-extern int clockPin;
-extern int dataPin;
-#endif
 void FlipDigitDriver::begin(int latchPin, int clockPin, int dataPin, int DigitWidth) {
     _latchPin = latchPin;
     _clockPin = clockPin;
@@ -41,19 +31,20 @@ void FlipDigitDriver::begin(int latchPin, int clockPin, int dataPin, int DigitWi
     pinMode(_latchPin, OUTPUT);
     pinMode(_clockPin, OUTPUT);
     pinMode(_dataPin, OUTPUT);
-}
 
-
-FlipDigitDriver::FlipDigitDriver() {
-    for (int i = 0; i < _DigitWidth; i++) {
-        segment_array[i] = 0;
+    _segment_array = new uint16_t[_DigitWidth];
+	for (int i = 0; i < _DigitWidth; i++) {
+        _segment_array[i] = 0;
     }
 }
 
-FlipDigitDriver::~FlipDigitDriver() {
+FlipDigitDriver::FlipDigitDriver() {
 
 }
 
+FlipDigitDriver::~FlipDigitDriver() {
+	delete[] _segment_array;
+}
 
 uint16_t FlipDigitDriver::getDigitByte(char digit) 
   {
@@ -143,28 +134,26 @@ uint16_t FlipDigitDriver::getDigitByte(char digit)
   }
 }
 
-void FlipDigitDriver::updateSegments(uint16_t shiftBytes[], int _DigitWidth){
-  digitalWrite(latchPin, LOW);
+void FlipDigitDriver::updateSegments(){
+  digitalWrite(_latchPin, LOW);
   for (int k = 0; k < _DigitWidth; k++)
   {
-    shiftOut(dataPin, clockPin, LSBFIRST, (byte)shiftBytes[k]);
-    shiftOut(dataPin, clockPin, LSBFIRST, (byte)(shiftBytes[k] >> 8));
+    shiftOut(_dataPin, _clockPin, LSBFIRST, (byte)_segment_array[k]);
+    shiftOut(_dataPin, _clockPin, LSBFIRST, (byte)(_segment_array[k] >> 8));
   }
-  digitalWrite(latchPin, HIGH);
+  digitalWrite(_latchPin, HIGH);
   delay(3);
 }
 
-
-
-void FlipDigitDriver::resetSegmentsTrigger(int _DigitWidth)
+void FlipDigitDriver::resetSegmentsTrigger()
 {
-  digitalWrite(latchPin, LOW);
+  digitalWrite(_latchPin, LOW);
   for (int k = 0; k < _DigitWidth; k++)
   {
-    shiftOut(dataPin, clockPin, LSBFIRST, 0x00);
-    shiftOut(dataPin, clockPin, LSBFIRST, 0x00);
+    shiftOut(_dataPin, _clockPin, LSBFIRST, 0x00);
+    shiftOut(_dataPin, _clockPin, LSBFIRST, 0x00);
   }
-  digitalWrite(latchPin, HIGH);
+  digitalWrite(_latchPin, HIGH);
   delay(1);
 }
 
@@ -175,16 +164,13 @@ void FlipDigitDriver::frameDelay(int delay_ms){
 }
 
 void FlipDigitDriver::setDigits(char segmentDigits[])
-
 {
   for (int k = 0; k < _DigitWidth; k++)
   {
     uint16_t digit_data = getDigitByte(segmentDigits[k]);
-    segment_array[k] = ((digit_data ^ segment_array[k]) & digit_data) | TRIGGER;
+    _segment_array[k] = ((digit_data ^ _segment_array[k]) & digit_data) | TRIGGER;
   }
 
-  updateSegments(segment_array, _DigitWidth);
-  resetSegmentsTrigger(_DigitWidth);
+  updateSegments();
+  resetSegmentsTrigger();
 }
-
-
