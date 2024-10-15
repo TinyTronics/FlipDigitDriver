@@ -11,23 +11,21 @@
 
 #include <Arduino.h>
 
-
-
 class FlipDigitDriver {
 public:
     FlipDigitDriver();
     ~FlipDigitDriver();
     void begin(int latchPin, int clockPin, int dataPin,  int _DigitWidth );
-    void clearDisplay();
+    void clearDisplay(void);
     void setDigits(char segmentDigits[]);
      void frameDelay(int delay_ms); 
 
 private:
     int _latchPin, _clockPin, _dataPin, _DigitWidth;
-    uint16_t segment_array[];
+    uint16_t* _segment_array;
     uint16_t getDigitByte(char digit);
-    void updateSegments(uint16_t shiftBytes[], int _DigitWidth);
-    void resetSegmentsTrigger(int _DigitWidth);
+    void updateSegments();
+    void resetSegmentsTrigger();
     static const uint16_t SEGMENT_A;
     static const uint16_t SEGMENT_A_INV;
     static const uint16_t SEGMENT_B;
